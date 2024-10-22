@@ -1,3 +1,4 @@
+import 'package:android_automactic_app/configs/theme/app_color.dart';
 import 'package:flutter/material.dart';
 
 import 'features/splash/presentation/pages/splash.dart';
@@ -14,9 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(scaffoldBackgroundColor: AppColor.whiteColor),
       home: const SplashPage(),
     );
   }
