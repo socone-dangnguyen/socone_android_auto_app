@@ -1,3 +1,5 @@
+import 'package:android_automactic_app/configs/animation/page_transition.dart';
+import 'package:android_automactic_app/features/auth/presentation/pages/sign_in/email_phone.dart';
 import 'package:android_automactic_app/features/splash/presentation/widgets/car_header.dart';
 import 'package:flutter/material.dart';
 import 'package:android_automactic_app/configs/theme/app_color.dart';
@@ -68,10 +70,10 @@ class SplashPage extends StatelessWidget {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       foregroundColor:
-                          MaterialStateProperty.all<Color>(AppColor.whiteColor),
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          AppColor.primaryColor),
-                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          WidgetStateProperty.all<Color>(AppColor.whiteColor),
+                      backgroundColor:
+                          WidgetStateProperty.all<Color>(AppColor.primaryColor),
+                      padding: WidgetStateProperty.all<EdgeInsets>(
                           const EdgeInsets.all(15)),
                     ),
                     child: const Text(
@@ -80,7 +82,9 @@ class SplashPage extends StatelessWidget {
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/email-phone');
+                      Navigator.of(context).push(
+                        PageTransition.pageRoute(EmailOrPhonePage(), 1000),
+                      );
                     },
                   ),
                 )

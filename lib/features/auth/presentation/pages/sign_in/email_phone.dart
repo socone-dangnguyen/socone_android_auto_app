@@ -1,3 +1,4 @@
+import 'package:android_automactic_app/configs/animation/page_transition.dart';
 import 'package:android_automactic_app/configs/theme/app_color.dart';
 import 'package:android_automactic_app/features/auth/presentation/pages/sign_in/password.dart';
 import 'package:android_automactic_app/features/splash/presentation/widgets/car_header.dart';
@@ -7,27 +8,6 @@ import 'package:flutter_svg/svg.dart';
 class EmailOrPhonePage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   EmailOrPhonePage({super.key});
-  Route _createRoute() {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => PasswordPage(),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(1.0, 0.0); // Định nghĩa điểm bắt đầu (phải)
-        const end = Offset.zero; // Định nghĩa điểm kết thúc (giữa)
-        const curve = Curves.easeInOut; // Định nghĩa đường cong
-
-        var tween =
-            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-        var offsetAnimation = animation.drive(tween);
-
-        return SlideTransition(
-          position: offsetAnimation,
-          child: child,
-        );
-      },
-      transitionDuration: const Duration(
-          milliseconds: 500), // Thời gian cho hiệu ứng chuyển tiếp
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,15 +117,16 @@ class EmailOrPhonePage extends StatelessWidget {
                       width: 300,
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          foregroundColor: MaterialStateProperty.all<Color>(
+                          foregroundColor: WidgetStateProperty.all<Color>(
                               AppColor.whiteColor),
-                          backgroundColor: MaterialStateProperty.all<Color>(
+                          backgroundColor: WidgetStateProperty.all<Color>(
                               AppColor.primaryColor),
-                          padding: MaterialStateProperty.all<EdgeInsets>(
+                          padding: WidgetStateProperty.all<EdgeInsets>(
                               const EdgeInsets.all(16)),
                         ),
                         onPressed: () {
-                          Navigator.of(context).push(_createRoute());
+                          Navigator.of(context).push(
+                              PageTransition.pageRoute(PasswordPage(), 700));
                         },
                         child: const Text(
                           'Next',
